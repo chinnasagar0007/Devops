@@ -1,0 +1,65 @@
+---
+
+
+- name: downloading
+  get_url:
+   url: 'https://github.com/prometheus/node_exporter/releases/download/v1.4.0/node_exporter-{{ version }}.linux-{{ go_arch }}.tar.gz'
+   dest: '{{ nodeexporter_download_location }}'
+
+
+- name: unarchiving
+  unarchive:
+   src: '{{ nodeexporter_download_location }}/node_exporter-{{ version }}.linux-{{ go_arch }}.tar.gz'
+   dest: '{{ nodeexporter_download_location }}'
+   remote_src: yes
+
+
+- name: copying nodeexporter.service
+  template:
+   src: templates/nodeexporter.service.j2
+   dest: /etc/systemd/system/nodeexporter.service
+
+- name: starting service
+  service:
+   daemon_reload: yes
+   state: started
+   enabled: yes
+   name: nodeexporter
+  become: yes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+[Unit]
+Description=Prometheus
+
+[Service]
+Type=simple
+
+
+WorkingDirectory={{ prometheus_download_location }}/prometheus-{{ version }}.linux-{{ go_arch }}
+ExecStart={{ prometheus_download_location }}/prometheus-{{ version }}.linux-{{ go_arch }}/prometheus
+
+[Install]
+WantedBy=multi-user.target
+

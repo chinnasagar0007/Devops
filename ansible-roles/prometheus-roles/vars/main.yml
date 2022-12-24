@@ -1,0 +1,9 @@
+---
+# vars file for prometheus-roles
+version: '2.37.1'
+go_arch: 'amd64'
+prometheus_download_location: '/home/vagrant'
+nodeexporter: 
+ - host1: '192.168.56.132:9100'
+   host2: '192.168.56.130:9100'
+prometheus_node_exporter_group: all

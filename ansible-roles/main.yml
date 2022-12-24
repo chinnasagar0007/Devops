@@ -1,0 +1,10 @@
+---
+- hosts: prometheus
+  become: yes
+  roles:
+   - role: '/home/vagrant/prometheus-roles'
+
+- hosts: nodeexporter
+  become: yes
+  roles:
+   - role: '/home/vagrant/nodeexporter-roles'

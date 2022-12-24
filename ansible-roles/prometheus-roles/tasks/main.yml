@@ -1,0 +1,35 @@
+---
+# tasks file for prometheus-roles
+
+- name: downloading
+  get_url:
+   url: 'https://github.com/prometheus/prometheus/releases/download/v2.37.1/prometheus-{{ version }}.linux-{{ go_arch }}.tar.gz'
+   dest: '{{ prometheus_download_location }}'
+
+
+- name: unarchiving
+  unarchive:
+   src: '{{ prometheus_download_location }}/prometheus-{{ version }}.linux-{{ go_arch }}.tar.gz'
+   dest: '{{ prometheus_download_location }}'
+   remote_src: yes
+
+- name: copying prometheus.yml
+  template:
+   src: templates/prometheus.yml.j2
+   dest: '{{ prometheus_download_location }}/prometheus-{{ version }}.linux-{{ go_arch }}/prometheus.yml'
+
+- name: copying prometheus.service
+  template: 
+   src: templates/prometheus.service.j2
+   dest: /etc/systemd/system/prometheus.service
+
+- name: starting service
+  service:
+   daemon_reload: yes
+   state: started
+   enabled: yes
+   name: prometheus
+  become: yes
+
+
+

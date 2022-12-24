@@ -1,0 +1,13 @@
+[Unit]
+Description=Nodeexporter
+
+[Service]
+Type=simple
+
+
+WorkingDirectory={{ nodeexporter_download_location }}/node_exporter-{{ version }}.linux-{{ go_arch }}
+ExecStart={{ nodeexporter_download_location }}/node_exporter-{{ version }}.linux-{{ go_arch }}/node_exporter
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,16 @@
+---
+# tasks file for mongodb-roles
+- name: installing dependencies
+  yum:
+   name: libcurl openssl xz-libs
+   state: present
+  become: yes
+
+- name: 
+  get_url:
+   url: https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-{{ version }}.tgz
+   dest: '{{ mongodb_download_location }}'
+   
+- name: unarchiving
+  unarchive: 
+   src: 

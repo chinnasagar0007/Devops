@@ -1,0 +1,4 @@
+---
+version: '1.4.0'
+go_arch: 'amd64'
+nodeexporter_download_location: '/home/vagrant'
